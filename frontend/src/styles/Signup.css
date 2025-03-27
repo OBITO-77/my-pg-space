@@ -1,0 +1,219 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+/* 
+
+src/components/Signup.css .signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.signup-form {
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.signup-form h2 {
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+p a {
+  color: #28a745;
+  text-decoration: none;
+} */
+
+/* Root variables for color scheme */
+:root {
+  --light-blue: #8ecae6; /* Light Blue */
+  --medium-blue: #219ebc; /* Medium Blue */
+  --dark-blue: #023047; /* Dark Blue */
+  --yellow: #ffb703; /* Yellow */
+  --orange: #fb8500; /* Orange */
+  --light-background: #f2f2f2; /* Light Background */
+  --error-color: red; /* Error Color */
+}
+
+/* Container for the signup form */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(
+    --light-background
+  ); /* Using the defined background color */
+  padding: 20px; /* Added padding for better view on mobile */
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+/* Form styling */
+.signup-form {
+  background-color: wheat;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  font-family: "Raleway", sans-serif; /* Use the imported font */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for form */
+.signup-form:hover {
+  transform: scale(1.02);
+}
+
+/* Form header */
+.signup-form h2 {
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+  color: var(--dark-blue); /* Dark blue for heading */
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--dark-blue); /* Dark blue for labels */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--dark-blue); /* Dark blue for text inside input */
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect on input */
+.form-group input:focus {
+  border-color: var(--medium-blue); /* Blue border on focus */
+  outline: none;
+  box-shadow: 0 0 10px rgba(33, 158, 188, 0.2); /* Medium blue shadow on focus */
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--medium-blue); /* Use medium blue for the button */
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--dark-blue); /* Dark blue on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
+}
+
+/* Error message styling */
+/* .error-message {
+  color: red;
+  margin-bottom: 1rem;
+} */
+
+/* .popup-error {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background-color: #ffb703;
+  color: #023047;
+  padding: 0.3rem;
+  font-size: 12px;
+  border-radius: 4px;
+  display: block;
+} */
+
+/* Text at the bottom */
+p {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+/* Link inside the paragraph */
+p a {
+  color: var(--orange); /* Use orange for the link */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .signup-container {
+    padding: 10px; /* Ensure proper padding on smaller screens */
+  }
+
+  .signup-form h2 {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}

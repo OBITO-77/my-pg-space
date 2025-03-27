@@ -1,0 +1,61 @@
+.pg-list {
+  display: inline-block;
+  /* overflow: hidden; */
+  height: fit-content;
+  background-color: var(--light-orange);
+  /* border: 2px solid red; */
+  width: 50%;
+  /* padding: 20px; */
+}
+
+.pg-cards {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 50vw;
+}
+/*
+.pg-cards::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pg-cards::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); 
+  border-radius: 5px;
+}
+
+.pg-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pg-card {
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+} */
+
+.map {
+  height: 95vh;
+  width: 50%;
+  float: right;
+  position: sticky;
+  top: 0;
+  /* border-radius: 25px; */
+  padding: 20px;
+  padding-bottom: 30px;
+  background-color: var(--light-orange);
+
+  /* border: 2px solid rebeccapurple; */
+}
+
+/* .map-component {
+  position: sticky;
+  top: 0;
+  height: 500px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+} */
+.pg-container {
+  background-color: var(--light-orange);
+}

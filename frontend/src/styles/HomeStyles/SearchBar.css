@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+.search-bar {
+  display: flex;
+  justify-content: space-around; /* Use space between for optimal layout */
+  align-items: center;
+  /* background-color: var(--light-blue); */
+  padding: 20px;
+
+  background-color: var(--light-orange);
+  /* Increased max width for larger screens */
+  width: 100%; /* Make it responsive */
+}
+
+.search-bar input {
+  flex: 7; /* Allow input to take up remaining space */
+  padding: 12px 16px; /* Comfortable padding */
+  border: 2px solid var(--dark-blue); /* Blue border */
+  border-radius: 5px 0 0 5px; /* Rounded corners */
+  outline: none; /* Remove default outline */
+  font-size: 1rem; /* Font size */
+  color: var(--dark-blue); /* Dark blue text color */
+  background-color: var(--light-orange); /* White background */
+  font-family: "Raleway", sans-serif; /* Modern font */
+  transition: all 0.3s ease; /* Smooth transition for focus effect */
+}
+
+/* Placeholder styling */
+.search-bar input::placeholder {
+  color: var(--dark-blue); /* Placeholder text color */
+  opacity: 0.7; /* Slight transparency for placeholder */
+  /* Italicize the placeholder for a softer look */
+}
+
+/* Focus effect */
+.search-bar input:focus {
+  border-color: var(--orange); /* Change border color on focus */
+  box-shadow: 0 0 8px rgba(251, 133, 0, 0.3); /* Glow effect */
+}
+
+.search-bar button {
+  padding: 12px 20px; /* Slightly reduced padding for a more compact button */
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: var(--orange);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  min-width: 40px;
+  flex: 1;
+  margin: 20px; /* Ensure button is wide enough for readability */
+}
+
+.search-bar button:hover {
+  background-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.search-bar button:active {
+  transform: translateY(0);
+  background-color: var(--dark-blue);
+}

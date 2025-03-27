@@ -1,0 +1,102 @@
+/* PGCard.css */
+
+/* Import necessary fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Raleway:wght@400&display=swap");
+
+.pg-card {
+  display: flex; /* Use flexbox for side-by-side layout */
+  background-color: var(--dark-blue);
+  border: 1px solid var(--medium-blue);
+  border-radius: 10px;
+  overflow: hidden; /* Ensures rounded corners look good */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin: 20px; /* Space between cards */
+  max-width: 800px; /* Adjust max-width to accommodate side-by-side layout */
+}
+
+.pg-card:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.pg-image {
+  width: 250px; /* Fixed width for image */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Crop image to cover area */
+}
+
+.pg-info {
+  padding: 15px; /* Padding inside the card */
+  flex: 1; /* Allow info to take remaining space */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+}
+
+.pg-info h2 {
+  font-size: 1.5rem; /* Card title font size */
+  color: white;
+  margin: 0 0 10px 0; /* Margin below title */
+  font-family: "Montserrat", sans-serif; /* Use Montserrat for headings */
+}
+
+.pg-info p {
+  color: wheat;
+  margin: 5px 0; /* Spacing between paragraphs */
+}
+
+/* Button styling */
+.pg-actions {
+  display: flex;
+  justify-content: space-around; /* Space between buttons */
+  margin-top: auto; /* Push buttons to the bottom */
+}
+
+/* Schedule a visit button */
+.pg-actions button.schedule {
+  padding: 12px 15px; /* Button padding */
+  border: none;
+  border-radius: 5px;
+  background-color: var(--orange); /* Orange background */
+  color: white; /* Text color */
+  font-family: "Raleway", sans-serif; /* Use Raleway for button text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem; /* Smaller button text */
+  flex: 1; /* Take equal space in flex container */
+  margin-right: 5px; /* Space between buttons */
+}
+
+.pg-actions button.schedule:hover {
+  background-color: var(--yellow); /* Change color on hover */
+  transform: translateY(-2px); /* Lift button effect */
+}
+
+.pg-actions button.schedule:active {
+  background-color: var(--dark-blue); /* Darken button on click */
+}
+
+/* Request a callback button */
+.pg-actions button.callback {
+  padding: 12px 15px; /* Button padding */
+  border: none;
+  border-radius: 5px;
+  background-color: var(--medium-blue); /* Medium blue background */
+  color: white; /* Text color */
+  font-family: "Raleway", sans-serif; /* Use Raleway for button text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem; /* Smaller button text */
+  flex: 1; /* Take equal space in flex container */
+  margin-left: 5px; /* Space between buttons */
+}
+
+.pg-actions button.callback:hover {
+  background-color: var(--dark-blue); /* Change color on hover */
+  transform: translateY(-2px); /* Lift button effect */
+}
+
+.pg-actions button.callback:active {
+  background-color: var(--orange); /* Darken button on click */
+}

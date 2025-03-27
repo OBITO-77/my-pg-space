@@ -1,0 +1,45 @@
+# Global ignores for Node.js projects
+node_modules/
+dist/
+build/
+.env
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and system files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# React Vite (Frontend)
+frontend/node_modules/
+frontend/dist/
+
+frontend/.vite/
+frontend/.parcel-cache/
+frontend/.next/
+frontend/out/
+frontend/yarn.lock
+frontend/package-lock.json
+frontend/pnpm-lock.yaml
+frontend/public/*.map
+
+# Express (Backend)
+backend/node_modules/
+backend/dist/
+backend/yarn.lock
+backend/package-lock.json
+backend/pnpm-lock.yaml
+backend/coverage/
+backend/uploads/
+backend/tmp/
+backend/logs/
+backend/debug.log

@@ -1,0 +1,24 @@
+/* src/styles/FilterSection.css */
+.filter-section {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.filter-section h4 {
+  margin-bottom: 10px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

@@ -1,0 +1,47 @@
+/* Footer.css */
+
+/* Import necessary fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+footer {
+  background-color: var(--dark-blue); /* Dark blue background */
+  color: white; /* Text color */
+  padding: 20px; /* Padding around the footer */
+  text-align: center; /* Center align text */
+  font-family: "Raleway", sans-serif; /* Font for footer */
+  position: relative; /* Positioning context for potential absolute elements */
+}
+
+.footer-links {
+  margin-bottom: 10px; /* Space between links and copyright */
+}
+
+.footer-links a {
+  color: var(--light-blue); /* Light blue link color */
+  text-decoration: none; /* Remove underline */
+  margin: 0 15px; /* Space between links */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.footer-links a:hover {
+  color: var(--yellow); /* Change color on hover */
+}
+
+footer p {
+  margin: 0; /* Remove margin from paragraph */
+  font-size: 0.9rem; /* Slightly smaller text for copyright */
+  color: var(--light-blue);
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+  .footer-links {
+    display: flex; /* Flexbox for responsive layout */
+    flex-direction: column; /* Stack links vertically on small screens */
+    align-items: center; /* Center align links */
+  }
+
+  .footer-links a {
+    margin: 5px 0; /* Space between links when stacked */
+  }
+}

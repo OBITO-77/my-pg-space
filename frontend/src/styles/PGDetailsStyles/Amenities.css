@@ -1,0 +1,30 @@
+.amenities {
+  width: 100%;
+  padding: 20px;
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.amenities h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.amenities ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.amenities ul li {
+  font-size: 16px;
+  color: var(--light-blue);
+  margin-bottom: 10px;
+}
+
+.amenities ul li:before {
+  content: "✔";
+  color: #4caf50;
+  margin-right: 10px;
+}

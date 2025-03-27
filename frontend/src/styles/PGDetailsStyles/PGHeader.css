@@ -1,0 +1,162 @@
+/* .pg-header {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.pg-image {
+  width: 400px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.pg-info {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.pg-info h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.pg-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.pg-actions {
+  margin-top: 20px;
+}
+
+.pg-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+.schedule-visit-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.schedule-visit-btn:hover {
+  background-color: #218838;
+}
+
+.request-callback-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.request-callback-btn:hover {
+  background-color: #0069d9;
+} */
+
+/* PGHeader.css */
+
+/* Import necessary fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
+
+.pg-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--dark-blue); /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-bottom: 10px;
+}
+
+.pg-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pg-info h1 {
+  font-size: 4rem;
+  color: white; /* Dark blue for headings */
+  margin: auto;
+  font-family: "Raleway", sans-serif;
+  font-weight: bolder;
+}
+
+.pg-info p {
+  font-size: 1rem;
+  color: var(--medium-blue); /* Medium blue for text */
+  margin: 5px 0;
+  font-family: "Raleway", sans-serif;
+}
+
+/* Action buttons */
+.pg-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.pg-actions button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* background-color: var(--orange); */
+}
+
+/* Schedule a Visit button */
+.schedule-visit-btn {
+  background-color: var(--orange); /* Orange button */
+  color: white;
+}
+
+.schedule-visit-btn:hover {
+  background-color: var(--yellow); /* Yellow on hover */
+  transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.schedule-visit-btn:active {
+  background-color: var(--dark-blue); /* Dark blue on active */
+  transform: translateY(1px); /* Button press effect */
+}
+
+/* Request a Callback button */
+.request-callback-btn {
+  background-color: var(--medium-blue); /* Medium blue button */
+  color: white;
+}
+
+.request-callback-btn:hover {
+  background-color: var(--dark-blue); /* Dark blue on hover */
+  transform: translateY(-3px);
+}
+
+.request-callback-btn:active {
+  background-color: var(--orange); /* Orange on active */
+  transform: translateY(1px);
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+  .pg-header {
+    flex-direction: row; /* Display image and info side by side */
+    justify-content: space-between;
+  }
+
+  .pg-info {
+    text-align: left;
+    margin-left: 20px;
+  }
+}

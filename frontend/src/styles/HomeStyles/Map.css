@@ -1,0 +1,18 @@
+.map-container {
+  height: 650px;
+  width: 100%;
+
+  /* border: 2px solid #fb0404; */
+
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+}
+
+.map-container .leaflet-container {
+  height: 100%;
+  width: 100%;
+  /* border: 2px solid #2b00ff; */
+  border-radius: 35px;
+  /* display: none; */
+}

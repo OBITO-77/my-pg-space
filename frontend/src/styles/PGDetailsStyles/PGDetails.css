@@ -1,0 +1,64 @@
+.pg-detail-page {
+  padding: 20px;
+  background-color: var(--light-orange);
+}
+
+.middle-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px 0px;
+}
+.pg-details {
+  background-color: var(
+    --dark-blue
+  ); /* Light blue background for the section */
+  padding: 20px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-size: larger;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+.pg-details p {
+  color: white;
+  font-size: medium;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+}
+/* 
+.pg-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pg-image {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.pg-info {
+  flex: 1;
+}
+
+.pg-actions button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.schedule-visit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.request-callback-btn {
+  background-color: #008cba;
+  color: white;
+} */
+
+/* Similar styles for other components */

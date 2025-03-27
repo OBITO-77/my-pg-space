@@ -1,0 +1,128 @@
+/* .occupancy-details {
+  margin: 20px 0;
+  background-color: #fdfdfd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.occupancy-details h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.occupancies {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.occupancy {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  width: 250px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.occupancy h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.occupancy p {
+  font-size: 16px;
+  color: #333;
+} */
+
+/* OccupancyDetails.css */
+
+/* Import necessary fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+/* Color scheme variables */
+:root {
+  --light-blue: #8ecae6; /* Light Blue */
+  --medium-blue: #219ebc; /* Medium Blue */
+  --dark-blue: #023047; /* Dark Blue */
+  --yellow: #ffb703; /* Yellow */
+  --orange: #fb8500;
+  --light-orange: #ede0c0; /* Light Orange */
+}
+
+/* Container for the Occupancy Details */
+.occupancy-details {
+  background-color: var(--dark-blue); /* Light blue background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  /* max-width: 900px; */
+
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+}
+
+/* Heading for Available Occupancies */
+.occupancy-details h2 {
+  font-size: 2rem;
+  color: white; /* Dark blue text */
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Container for individual occupancy boxes */
+.occupancies {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Responsive grid */
+  gap: 20px;
+}
+
+/* Styling for each occupancy box */
+.occupancy {
+  background-color: var(--light-orange); /* Light orange background */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  text-align: left;
+}
+
+/* Occupancy box hover effect */
+.occupancy:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow */
+}
+
+/* Occupancy title */
+.occupancy h3 {
+  font-size: 1.5rem;
+  color: var(--medium-blue); /* Medium blue text */
+  margin-bottom: 10px;
+}
+
+/* Occupancy price */
+.occupancy p {
+  font-size: 1.2rem;
+  color: var(--orange); /* Orange text */
+  font-weight: 500;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .occupancy-details {
+    padding: 15px;
+  }
+
+  .occupancy h3 {
+    font-size: 1.3rem;
+  }
+
+  .occupancy p {
+    font-size: 1rem;
+  }
+}

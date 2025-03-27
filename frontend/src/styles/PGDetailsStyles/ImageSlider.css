@@ -1,0 +1,65 @@
+/* ImageSlider.css */
+
+/* Import necessary fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+/* Color scheme variables */
+:root {
+  --light-blue: #8ecae6; /* Light Blue */
+  --medium-blue: #219ebc; /* Medium Blue */
+  --dark-blue: #023047; /* Dark Blue */
+  --yellow: #ffb703; /* Yellow */
+  --orange: #fb8500;
+  --light-orange: #ede0c0; /* Light Orange */
+}
+
+/* Container for the image slider */
+.image-slider {
+  width: 100%;
+  max-width: 800px; /* Limit the max width of the slider */
+  margin: 20px auto; /* Center the slider horizontally */
+
+  background-color: var(--dark-blue); /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden; /* Hide overflow to ensure the slider stays clean */
+  font-family: "Raleway", sans-serif;
+}
+
+/* Styling for the slider images */
+.slider-image {
+  width: 100%;
+  height: 500px; /* Maintain image aspect ratio */
+  border-radius: 8px; /* Rounded corners for images */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  object-fit: cover;
+}
+
+/* Hover effect on images */
+.slider-image:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Slick Navigation arrows */
+.slick-prev,
+.slick-next {
+  font-size: 0px;
+  color: var(--dark-blue); /* Dark blue for arrows */
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.7); /* Light background */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .image-slider {
+    max-width: 100%; /* Full width on smaller screens */
+    padding: 5px; /* Reduce padding on smaller screens */
+  }
+}
