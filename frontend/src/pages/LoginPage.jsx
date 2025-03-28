@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
+import { useAuthStore } from "../stores/useAuthStore";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login, isLoggingIn } = useAuthStore();
 
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -22,19 +24,23 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("hello");
+    login({ email, password });
 
-    try {
-      const { data } = await axios.post(`${BASE_URL}/users/login`, {
-        email,
-        password,
-      });
+    navigate("/");
 
-      // Assuming JWT token is returned, store it in local storage
-      localStorage.setItem("authToken", data.token);
-      navigate("/");
-    } catch (error) {
-      setError("Invalid email or password");
-    }
+    // try {
+    //   const { data } = await axios.post(`${BASE_URL}/users/login`, {
+    //     email,
+    //     password,
+    //   });
+
+    //   // Assuming JWT token is returned, store it in local storage
+    //   localStorage.setItem("authToken", data.token);
+    //   navigate("/");
+    // } catch (error) {
+    //   setError("Invalid email or password");
+    // }
   };
 
   return (
@@ -46,6 +52,7 @@ const LoginPage = () => {
           <label>Email</label>
           <input
             type="email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -55,6 +62,7 @@ const LoginPage = () => {
           <label>Password</label>
           <input
             type="password"
+            name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

@@ -4,7 +4,8 @@ import {
   loginUser,
   getUserProfile,
   updateUserProfile,
-} from "../controllers/userController.js";
+  checkAuth,
+} from "../controllers/user.controller.js";
 import authMiddleware from "../utils/authMiddleware.js";
 
 const router = express.Router();
@@ -14,6 +15,9 @@ router.post("/register", registerUser);
 
 // Login user
 router.post("/login", loginUser);
+
+// Login user
+router.post("/checkAuth", authMiddleware, checkAuth);
 
 // Get user profile (Private)
 router.get("/profile", authMiddleware, getUserProfile);

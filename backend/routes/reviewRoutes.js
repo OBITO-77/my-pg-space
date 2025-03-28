@@ -3,7 +3,7 @@ import {
   addReview,
   getPGReviews,
   deleteReview,
-} from "../controllers/reviewController.js";
+} from "../controllers/review.controller.js";
 import authMiddleware from "../utils/authMiddleware.js";
 
 const router = express.Router();

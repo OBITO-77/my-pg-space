@@ -4,7 +4,7 @@ import {
   getUserBookings,
   getPGBookings,
   cancelBooking,
-} from "../controllers/bookingController.js";
+} from "../controllers/booking.controller.js";
 import authMiddleware from "../utils/authMiddleware.js";
 
 const router = express.Router();

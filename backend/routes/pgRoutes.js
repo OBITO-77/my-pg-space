@@ -5,7 +5,7 @@ import {
   createPG,
   updatePG,
   deletePG,
-} from "../controllers/pgController.js";
+} from "../controllers/pg.controller.js";
 import authMiddleware from "../utils/authMiddleware.js";
 import multer from "multer";
 import path from "path";

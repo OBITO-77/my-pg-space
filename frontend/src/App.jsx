@@ -8,12 +8,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/Signup";
 import PGDetailsPage from "./pages/PGDetailsPage";
 import FindRoommatePage from "./pages/FindRoommatePage";
+import ChatPage from "./pages/ChatPage";
+import "./App.css";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/chat" element={<ChatPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<SignupPage />} />

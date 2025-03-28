@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
@@ -36,7 +36,7 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign(user, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     res.json({ token, user });
@@ -69,5 +69,14 @@ export const updateUserProfile = async (req, res) => {
     res.json(updatedUser);
   } catch (error) {
     res.status(500).json({ message: error });
+  }
+};
+
+export const checkAuth = (req, res) => {
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    console.log("Error in checkAuth controller", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
