@@ -1,47 +1,30 @@
 // src/components/Login.jsx
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+
 import "../styles/Login.css";
 import { useAuthStore } from "../stores/useAuthStore";
+import { Loader2 } from "lucide-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login, isLoggingIn } = useAuthStore();
+  const { login, isLoggingIn, authUser } = useAuthStore();
 
-  const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-  // Check if authToken exists on component mount
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      navigate("/"); // Redirect to home if token is present
-    }
-  }, [navigate]);
+  //Check if authToken exists on component mount
+  // useEffect(() => {
+  //   checkAuth()
+  // }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("hello");
     login({ email, password });
-
-    navigate("/");
-
-    // try {
-    //   const { data } = await axios.post(`${BASE_URL}/users/login`, {
-    //     email,
-    //     password,
-    //   });
-
-    //   // Assuming JWT token is returned, store it in local storage
-    //   localStorage.setItem("authToken", data.token);
-    //   navigate("/");
-    // } catch (error) {
-    //   setError("Invalid email or password");
-    // }
   };
+
+  if (authUser) return <Navigate to="/" />;
 
   return (
     <div className="login-container">
@@ -68,7 +51,16 @@ const LoginPage = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">
+          {isLoggingIn ? (
+            <>
+              <Loader2 className="h-5 w-5 animate-spin" />
+              Loading...
+            </>
+          ) : (
+            "Sign in"
+          )}
+        </button>
         <p>
           Don't have an account? <a href="/signup">Sign up</a>
         </p>

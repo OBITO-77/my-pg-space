@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import userRoutes from "./routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 import pgRoutes from "./routes/pgRoutes.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -15,6 +15,7 @@ dotenv.config();
 connectDB(); // Connect to MongoDB
 
 app.use(express.json()); // Parse JSON
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173",

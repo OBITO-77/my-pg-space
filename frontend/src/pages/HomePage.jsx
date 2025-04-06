@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "../components/HomeComponents/Header";
 import Banner from "../components/HomeComponents/Banner";
 import FilterSection from "../components/HomeComponents/FilterSection";
 import PGList from "../components/HomeComponents/PGList";
 import SearchBar from "../components/HomeComponents/SearchBar";
 import Footer from "../components/HomeComponents/Footer";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { useQuery } from "@tanstack/react-query";
+import { getAllPgs } from "../services/api/pgApi";
+import { Loader2 } from "lucide-react";
 
 // const pgList = [
 //   {
@@ -37,29 +37,18 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 // ];
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check if authToken exists in localStorage
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login"); // Redirect to login page if no token is found
-    }
-  }, [navigate]); // Depend on navigate to prevent lint warning
-
   const [pgList, setPgList] = useState([]);
 
-  useEffect(() => {
-    const fetchPgData = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/pgs`);
-        setPgList(response.data);
-      } catch (error) {
-        console.error("Error fetching PGs", error);
-      }
-    };
-    fetchPgData();
-  }, []);
+  const {
+    data: pgs,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["pgs"],
+    queryFn: getAllPgs,
+  });
+
+  if (isLoading) return <Loader2 className="h-5 w-5 animate-spin" />;
 
   return (
     <>
@@ -69,7 +58,7 @@ const HomePage = () => {
         <SearchBar />
         {/* <FilterSection /> */}
 
-        <PGList pgData={pgList} />
+        <PGList pgData={pgs} />
       </section>
       <Footer />
     </>
