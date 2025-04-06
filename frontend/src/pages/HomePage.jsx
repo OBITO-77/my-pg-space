@@ -1,13 +1,66 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/HomeComponents/Header";
 import Banner from "../components/HomeComponents/Banner";
 import FilterSection from "../components/HomeComponents/FilterSection";
 import PGList from "../components/HomeComponents/PGList";
 import SearchBar from "../components/HomeComponents/SearchBar";
 import Footer from "../components/HomeComponents/Footer";
-import { useQuery } from "@tanstack/react-query";
-import { getAllPgs } from "../services/api/pgApi";
 import { Loader2 } from "lucide-react";
+import Chatbot from "../components/ChatBot/Chatbot";
+import axios from "axios";
+
+const HomePage = () => {
+  const [pgList, setPgList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleFilter = async (filters) => {
+    setLoading(true);
+    //try {
+      const query = new URLSearchParams();
+
+      if (filters.city) query.append("city", filters.city);
+      if (filters.type) query.append("type", filters.type);
+      if (filters.maxPrice) query.append("price", filters.maxPrice);
+      if (filters.amenities && filters.amenities.length > 0) {
+        query.append("amenities", filters.amenities.join(","));
+      }
+      console.log(query);
+
+      const res = await axios.get(`/api/pgs?${query.toString()}`);
+      setPgList(res.data);
+    // } catch (err) {
+    //   console.error("Error filtering PGs", err);
+    // } finally {
+    //   setLoading(false);
+    // }
+  };
+
+  // useEffect(() => {
+  //   handleFilter(); // Load all PGs on initial render
+  // }, []);
+
+  return (
+    <>
+      <Header />
+      <Banner />
+      <section id="pgs" className="px-4 md:px-12">
+        <SearchBar />
+        <FilterSection onFilter={handleFilter} />
+        {loading ? (
+          <div className="flex justify-center py-6">
+            <Loader2 className="h-8 w-8 animate-spin" />
+          </div>
+        ) : (
+          <PGList pgData={pgList} />
+        )}
+      </section>
+      <Footer />
+      <Chatbot />
+    </>
+  );
+};
+
+export default HomePage;
 
 // const pgList = [
 //   {
@@ -35,34 +88,3 @@ import { Loader2 } from "lucide-react";
 //     image: "https://example.com/sarnen.jpg",
 //   },
 // ];
-
-const HomePage = () => {
-  const [pgList, setPgList] = useState([]);
-
-  const {
-    data: pgs,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["pgs"],
-    queryFn: getAllPgs,
-  });
-
-  if (isLoading) return <Loader2 className="h-5 w-5 animate-spin" />;
-
-  return (
-    <>
-      <Header />
-      <Banner />
-      <section id="pgs">
-        <SearchBar />
-        {/* <FilterSection /> */}
-
-        <PGList pgData={pgs} />
-      </section>
-      <Footer />
-    </>
-  );
-};
-
-export default HomePage;

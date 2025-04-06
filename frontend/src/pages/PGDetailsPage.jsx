@@ -7,6 +7,7 @@ import Header from "../components/HomeComponents/Header";
 import axios from "axios";
 import "../styles/PGDetailsStyles/PGDetails.css";
 import { useParams } from "react-router-dom";
+import { axiosInstance } from "../lib/axiosInstance";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const PGDetailPage = ({ match }) => {
@@ -16,7 +17,7 @@ const PGDetailPage = ({ match }) => {
   useEffect(() => {
     const fetchPgData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/pgs/${pgId}`);
+        const response = await axiosInstance.get(`/pgs/${pgId}`);
         setPg(response.data);
       } catch (error) {
         console.error("Error fetching PG data", error);

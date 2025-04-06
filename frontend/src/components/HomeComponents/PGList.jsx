@@ -24,7 +24,7 @@ const PGList = ({ pgData }) => {
     <div className="pg-container">
       <div className="pg-list">
         <div className="pg-cards">
-          {pgData.map((pg, index) => (
+          {pgData?.map((pg, index) => (
             <PGCard
               key={index}
               pg={pg}

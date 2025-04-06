@@ -9,6 +9,7 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
 import { app, server } from "./lib/socket.js";
+import chatbotRoutes from "./routes/chatbot.js";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 app.get("/test", (req, res) => {
   res.send("this is test Route");

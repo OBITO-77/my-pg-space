@@ -1,19 +1,35 @@
 import PG from "../models/PG.js";
 
-// Get all PG listings
+// Get all PG listings with advanced filtering
 export const getPGs = async (req, res) => {
-  const { city, type, price } = req.query;
+  const { city, type, maxPrice, amenities } = req.query;
 
   const filters = {};
-  if (city) filters.city = city;
-  if (type) filters.type = type;
-  if (price) filters.price = { $lte: price };
+
+  if (city) {
+    filters.city = { $regex: city, $options: "i" }; // case-insensitive city match
+  }
+
+  if (type) {
+    filters.type = type;
+  }
+
+  if (maxPrice) {
+    filters.price = { $lte: Number(maxPrice) };
+  }
+
+  if (amenities) {
+    const amenitiesArray = amenities.split(",");
+    filters.amenities = { $all: amenitiesArray };
+  }
+  print(filters);
 
   try {
     const pgs = await PG.find(filters);
-    console.log("returned PGs");
+    console.log("Filtered PGs returned:", pgs.length);
     res.json(pgs);
   } catch (error) {
+    console.error("Error fetching PGs:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -45,7 +61,8 @@ export const createPG = async (req, res) => {
     lat,
     lang,
   } = req.body;
-  const images = req.files.map((file) => file.filename); // Image file names
+
+  const images = req.files.map((file) => file.filename); // Uploaded images
 
   try {
     const newPG = await PG.create({
@@ -68,6 +85,7 @@ export const createPG = async (req, res) => {
 
     res.status(201).json(newPG);
   } catch (error) {
+    console.error("Error creating PG:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
@@ -78,10 +96,12 @@ export const updatePG = async (req, res) => {
     const updatedPG = await PG.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
+
     if (!updatedPG) return res.status(404).json({ message: "PG not found" });
 
     res.json(updatedPG);
   } catch (error) {
+    console.error("Error updating PG:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -90,10 +110,12 @@ export const updatePG = async (req, res) => {
 export const deletePG = async (req, res) => {
   try {
     const deletedPG = await PG.findByIdAndDelete(req.params.id);
+
     if (!deletedPG) return res.status(404).json({ message: "PG not found" });
 
     res.json({ message: "PG deleted successfully" });
   } catch (error) {
+    console.error("Error deleting PG:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
