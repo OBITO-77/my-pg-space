@@ -7,27 +7,33 @@ import SearchBar from "../components/HomeComponents/SearchBar";
 import Footer from "../components/HomeComponents/Footer";
 import { Loader2 } from "lucide-react";
 import Chatbot from "../components/ChatBot/Chatbot";
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { getAllPgs } from "../services/api/pgApi";
 
 const HomePage = () => {
-  const [pgList, setPgList] = useState([]);
+  // const [pgList, setPgList] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const {data:pgList } = useQuery({
+    queryKey:["pgs"],
+    queryFn:getAllPgs
+  })
+
   const handleFilter = async (filters) => {
-    setLoading(true);
-    //try {
-      const query = new URLSearchParams();
+    // setLoading(true);
+    // try {
+    //   const query = new URLSearchParams();
 
-      if (filters.city) query.append("city", filters.city);
-      if (filters.type) query.append("type", filters.type);
-      if (filters.maxPrice) query.append("price", filters.maxPrice);
-      if (filters.amenities && filters.amenities.length > 0) {
-        query.append("amenities", filters.amenities.join(","));
-      }
-      console.log(query);
+    //   if (filters.city) query.append("city", filters.city);
+    //   if (filters.type) query.append("type", filters.type);
+    //   if (filters.maxPrice) query.append("price", filters.maxPrice);
+    //   if (filters.amenities && filters.amenities.length > 0) {
+    //     query.append("amenities", filters.amenities.join(","));
+    //   }
+    //   console.log(query);
 
-      const res = await axios.get(`/api/pgs?${query.toString()}`);
-      setPgList(res.data);
+    //   const res = await axios.get(`/api/pgs?${query.toString()}`);
+    //   setPgList(res.data);
     // } catch (err) {
     //   console.error("Error filtering PGs", err);
     // } finally {

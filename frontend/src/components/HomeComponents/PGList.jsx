@@ -3,16 +3,10 @@ import React, { useState } from "react";
 import PGCard from "./PGCard";
 import MapComponent from "./MapComponent";
 import "../../styles/HomeStyles/PGList.css";
-import { useQuery } from "@tanstack/react-query";
-import { getAllPgs } from "../../services/api/pgApi";
 
 const PGList = ({ pgData }) => {
   const [hoveredPG, setHoveredPG] = useState(null);
 
-  const {data:pgs } = useQuery({
-    queryKey:["pgs"],
-    queryFn:getAllPgs
-  })
 
   const handleHover = (pg) => {
     setHoveredPG(pg); // Set the PG when hovered
@@ -31,7 +25,7 @@ const PGList = ({ pgData }) => {
     <div className="pg-container">
       <div className="pg-list">
         <div className="pg-cards">
-          {pgs?.map((pg, index) => (
+          {pgData?.map((pg, index) => (
             <PGCard
               key={index}
               pg={pg}

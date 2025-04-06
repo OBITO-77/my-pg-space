@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+export const upload = multer({ storage: storage });
 
 // Create a new PG listing (Private, owner only)
 router.post("/", authMiddleware, upload.array("images", 5), createPG);
