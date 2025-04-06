@@ -22,7 +22,6 @@ export const getPGs = async (req, res) => {
     const amenitiesArray = amenities.split(",");
     filters.amenities = { $all: amenitiesArray };
   }
-  print(filters);
 
   try {
     const pgs = await PG.find(filters);
