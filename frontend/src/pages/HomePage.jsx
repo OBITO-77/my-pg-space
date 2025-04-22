@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Header from "../components/HomeComponents/Header";
 import Banner from "../components/HomeComponents/Banner";
 import FilterSection from "../components/HomeComponents/FilterSection";
@@ -12,9 +11,8 @@ import { getAllPgs } from "../services/api/pgApi";
 
 const HomePage = () => {
   // const [pgList, setPgList] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  const {data:pgList } = useQuery({
+  const {data:pgList ,isLoading} = useQuery({
     queryKey:["pgs"],
     queryFn:getAllPgs
   })
@@ -52,7 +50,7 @@ const HomePage = () => {
       <section id="pgs" className="px-4 md:px-12">
         <SearchBar />
         <FilterSection onFilter={handleFilter} />
-        {loading ? (
+        {isLoading ? (
           <div className="flex justify-center py-6">
             <Loader2 className="h-8 w-8 animate-spin" />
           </div>

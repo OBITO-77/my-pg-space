@@ -6,10 +6,11 @@ import "../../styles/HomeStyles/PGList.css";
 
 const PGList = ({ pgData }) => {
   const [hoveredPG, setHoveredPG] = useState(null);
+  
 
 
   const handleHover = (pg) => {
-    setHoveredPG(pg); // Set the PG when hovered
+    setHoveredPG(pg); // Set the PG w hen hovered
   };
 
   const handleLeave = () => {

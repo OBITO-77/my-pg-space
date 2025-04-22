@@ -7,10 +7,14 @@ import {
   updateProfile,
 } from "../controllers/auth.controller.js";
 import { protectRoute } from "../middlewares/auth.middleware.js";
+import upload from "../middlewares/upload.js";
 
 const router = express.Router();
 
-router.post("/signup", signup);
+router.post("/signup",upload.fields([
+  { name: "profilePic", maxCount: 1 },
+  { name: "idProof", maxCount: 1 },
+]), signup);
 router.post("/login", login);
 router.post("/logout", logout);
 

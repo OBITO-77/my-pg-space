@@ -7,17 +7,31 @@ const studentSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    age: {
+      type: Number,
+    },
+    budget: {
+      type: Number,
+    },
+    percentage: {
+      type: Number,
+    },
+    interests: [
+      {
+        type: String,
+      },
+    ],
     collegeName: {
       type: String,
-      required: true,
+      
     },
     courseName: {
       type: String,
-      required: true,
+      
     },
     yearOfStudy: {
       type: Number,
-      required: true,
+      
     },
     preferredPGs: [
       {
@@ -30,10 +44,6 @@ const studentSchema = new mongoose.Schema(
         type: String,
       },
     ],
-    budgetRange: {
-      min: { type: Number, required: true },
-      max: { type: Number, required: true },
-    },
   },
   {
     timestamps: true,

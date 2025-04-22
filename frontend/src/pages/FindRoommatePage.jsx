@@ -1,81 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "../styles/FindRoommateStyles/style.css";
 import ChatModal from "../components/FindRoommateComponents/ChatModal.jsx";
+import { useQuery } from "@tanstack/react-query";
+import { getAllStudents } from "../services/api/studentApi.js";
+import { Loader2 } from "lucide-react";
+import { useAuthStore } from "../stores/useAuthStore.js";
 
-const initialRoommates = [
-  {
-    id: 1,
-    name: "Rahul Sharma",
-    age: 20,
-    gender: "male",
-    budget: 12000,
-    twelfthPercentage: 85,
-    interests: ["movies", "sports"],
-    location: "Koramangala",
-    photo:
-      "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
-    contact: "rahul.sharma@example.com",
-  },
-  {
-    id: 2,
-    name: "Priya Patel",
-    age: 19,
-    gender: "female",
-    budget: 15000,
-    twelfthPercentage: 92,
-    interests: ["reading", "games"],
-    location: "Indiranagar",
-    photo:
-      "https://w7.pngwing.com/pngs/308/71/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png",
-    contact: "priya.patel@example.com",
-  },
-  {
-    id: 3,
-    name: "Amit Singh",
-    age: 21,
-    gender: "male",
-    budget: 13000,
-    twelfthPercentage: 78,
-    interests: ["games", "music"],
-    location: "HSR Layout",
-    photo:
-      "https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-man-avatar-with-circle-frame-vector-ilustration-png-image_6110328.png",
-    contact: "amit.singh@example.com",
-  },
-  {
-    id: 4,
-    name: "Neha Gupta",
-    age: 20,
-    gender: "female",
-    budget: 14000,
-    twelfthPercentage: 88,
-    interests: ["reading", "movies"],
-    location: "Whitefield",
-    photo:
-      "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg?semt=ais_hybrid",
-    contact: "neha.gupta@example.com",
-  },
-  {
-    id: 5,
-    name: "Rohan Kumar",
-    age: 22,
-    gender: "male",
-    budget: 11000,
-    twelfthPercentage: 82,
-    interests: ["sports", "travel"],
-    location: "Marathahalli",
-    photo:
-      "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
-    contact: "rohan.kumar@example.com",
-  },
-  // Add 5 more entries following the same structure
-];
+const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL;
 
-function FindRoommatePage() {
-  const [roommates, setRoommates] = useState(initialRoommates);
+const FindRoommatePage = () => {
+  const { data: roommates = [], isLoading, error } = useQuery({
+    queryKey: ["students"],
+    queryFn: getAllStudents,
+  });
+  const authUser = useAuthStore(state=>state.authUser);
+
   const [selectedRoommate, setSelectedRoommate] = useState(null);
   const [showChat, setShowChat] = useState(false);
-  const [filteredRoommates, setFilteredRoommates] = useState(initialRoommates);
+
   const [filters, setFilters] = useState({
     gender: "any",
     budget: 20000,
@@ -83,29 +25,23 @@ function FindRoommatePage() {
     selectedInterests: [],
   });
 
-  useEffect(() => {
-    applyFilters();
-  }, [filters]);
+  const filteredRoommates = useMemo(() => {
+    return roommates.filter((roommate) => {
+      if (roommate._id === authUser._id) return false;
 
-  const handleConnect = (roommate) => {
-    setSelectedRoommate(roommate);
-    setShowChat(true);
-  };
+      const matchesGender =
+        filters.gender === "any" || roommate.user.gender === filters.gender;
+      const matchesBudget = roommate.budget <= filters.budget;
+      const matchesPercentage = roommate.percentage >= filters.minPercentage;
+      const matchesInterests =
+        filters.selectedInterests.length === 0 ||
+        filters.selectedInterests.some((interest) =>
+          roommate.interests.includes(interest)
+        );
 
-  const applyFilters = () => {
-    const filtered = roommates.filter((roommate) => {
-      return (
-        (filters.gender === "any" || roommate.gender === filters.gender) &&
-        roommate.budget <= filters.budget &&
-        roommate.twelfthPercentage >= filters.minPercentage &&
-        (filters.selectedInterests.length === 0 ||
-          filters.selectedInterests.some((interest) =>
-            roommate.interests.includes(interest)
-          ))
-      );
+      return matchesGender && matchesBudget && matchesPercentage && matchesInterests;
     });
-    setFilteredRoommates(filtered);
-  };
+  }, [roommates, filters]);
 
   const handleInterestToggle = (interest) => {
     setFilters((prev) => ({
@@ -116,20 +52,36 @@ function FindRoommatePage() {
     }));
   };
 
+  const handleConnect = (roommate) => {
+    setSelectedRoommate(roommate);
+    setShowChat(true);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center py-6">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-red-500 text-center">Failed to load students</div>;
+  }
+
   return (
     <div className="container">
       {showChat && (
         <ChatModal
           contact={selectedRoommate}
           onClose={() => setShowChat(false)}
-          onSendMessage={(message) => {
-            // Here you would typically send the message to your backend
-            console.log("Message sent:", message);
-          }}
+          onSendMessage={(message) => console.log("Message sent:", message)}
         />
       )}
+
       <h1>Find Student Roommates</h1>
 
+      {/* Filters */}
       <div className="search-section">
         <h2>Search Filters</h2>
         <div className="filter-section">
@@ -151,12 +103,12 @@ function FindRoommatePage() {
             <label>Budget Range (₹):</label>
             <input
               type="range"
-              min="5000"
+              min="1000"
               max="20000"
-              step="1000"
+              step="500"
               value={filters.budget}
               onChange={(e) =>
-                setFilters({ ...filters, budget: e.target.value })
+                setFilters({ ...filters, budget: Number(e.target.value) })
               }
             />
             <span>₹{filters.budget}</span>
@@ -170,7 +122,7 @@ function FindRoommatePage() {
               max="100"
               value={filters.minPercentage}
               onChange={(e) =>
-                setFilters({ ...filters, minPercentage: e.target.value })
+                setFilters({ ...filters, minPercentage: Number(e.target.value) })
               }
             />
           </div>
@@ -178,52 +130,51 @@ function FindRoommatePage() {
           <div className="filter-group">
             <label>Interests:</label>
             <div className="interests-filter">
-              {["movies", "games", "reading", "sports", "other"].map(
-                (interest) => (
-                  <div
-                    key={interest}
-                    className={`interest-tag ${
-                      filters.selectedInterests.includes(interest)
-                        ? "selected"
-                        : ""
-                    }`}
-                    onClick={() => handleInterestToggle(interest)}
-                  >
-                    {getInterestIcon(interest)}{" "}
-                    {interest.charAt(0).toUpperCase() + interest.slice(1)}
-                  </div>
-                )
-              )}
+              {["movies", "games", "reading", "sports", "other"].map((interest) => (
+                <div
+                  key={interest}
+                  className={`interest-tag ${
+                    filters.selectedInterests.includes(interest) ? "selected" : ""
+                  }`}
+                  onClick={() => handleInterestToggle(interest)}
+                >
+                  {getInterestIcon(interest)}{" "}
+                  {interest.charAt(0).toUpperCase() + interest.slice(1)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
+      {/* Results */}
       <div className="results-section">
-        {filteredRoommates.map((roommate) => (
-          <RoommateCard
-            key={roommate.id}
-            roommate={roommate}
-            onConnect={handleConnect}
-          />
-        ))}
+        {filteredRoommates.length === 0 ? (
+          <div>No roommates match your criteria.</div>
+        ) : (
+          filteredRoommates.map((roommate) => (
+            <RoommateCard
+              key={roommate._id}
+              roommate={roommate}
+              onConnect={handleConnect}
+            />
+          ))
+        )}
       </div>
     </div>
   );
-}
+};
 
 const RoommateCard = ({ roommate, onConnect }) => {
+  const user = roommate.user || {};
   return (
     <div className="profile-card">
       <img
         className="profile-photo"
-        display="contain"
-        width="10"
-        height="10"
-        src={roommate.photo}
+        src={`${UPLOADS_URL}/${user.profilePic}`}
         alt="Profile"
       />
-      <h3>{roommate.name}</h3>
+      <h3>{user.fullName}</h3>
       <div className="stats">
         <div className="stat-item">
           <div className="stat-value">{roommate.age}</div>
@@ -235,7 +186,7 @@ const RoommateCard = ({ roommate, onConnect }) => {
         </div>
       </div>
       <div className="academic-score">
-        🎓 12th Percentage: {roommate.twelfthPercentage}%
+        🎓 12th Percentage: {roommate.percentage}%
       </div>
       <div className="interests">
         {roommate.interests.map((interest) => (

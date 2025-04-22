@@ -1,12 +1,33 @@
 import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
+import Owner from "../models/owner.model.js";
+import Student from "../models/student.model.js";
 //import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
-  const { fullName, email, password } = req.body;
+  const {
+    name,
+    email,
+    password,
+    role, // 'student' or 'owner'
+    age,
+    budget,
+    percentage,
+    interests,
+    collegeName,
+    courseName,
+    yearOfStudy,
+    contactNumber,
+    facilitiesRequired,
+  } = req.body;
+
+  const profilePic = req.files?.profilePic?.[0]?.filename || "";
+ // assuming multer handles this
+
   try {
-    if (!fullName || !email || !password) {
+    // 1. Validate required fields
+    if (!name || !email || !password || !role) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -16,35 +37,60 @@ export const signup = async (req, res) => {
         .json({ message: "Password must be at least 6 characters" });
     }
 
-    const user = await User.findOne({ email });
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(400).json({ message: "Email already exists" });
 
-    if (user) return res.status(400).json({ message: "Email already exists" });
-
+    // 2. Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    // 3. Create user
     const newUser = new User({
-      fullName,
+      name,
       email,
       password: hashedPassword,
+      profilePic,
     });
 
-    if (newUser) {
-      // generate jwt token here
-      generateToken(newUser._id, res);
-      await newUser.save();
+    await newUser.save();
 
-      res.status(201).json({
-        _id: newUser._id,
-        fullName: newUser.fullName,
-        email: newUser.email,
-        profilePic: newUser.profilePic,
+    // 4. Create role-specific document
+    if (role === "student") {
+      const student = new Student({
+        user: newUser._id,
+        age,
+        budget,
+        percentage,
+        interests: interests?.split(",").map((i) => i.trim()),
+        collegeName,
+        courseName,
+        yearOfStudy,
+        facilitiesRequired: facilitiesRequired?.split(",").map((f) => f.trim()),
       });
-    } else {
-      res.status(400).json({ message: "Invalid user data" });
+      await student.save();
+    } else if (role === "owner") {
+      const idProof = req.files?.idProof?.[0]?.filename || "";
+      const owner = new Owner({
+        user: newUser._id,
+        contactNumber,
+        idProof,
+      });
+      await owner.save();
     }
+
+    // 5. Generate token and respond
+    generateToken(newUser._id, res);
+
+    res.status(201).json({
+      _id: newUser._id,
+      fullName: newUser.fullName,
+      email: newUser.email,
+      role,
+      profilePic: newUser.profilePic,
+    });
   } catch (error) {
-    console.log("Error in signup controller", error.message);
+    console.log("Error in signup controller:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };

@@ -14,6 +14,8 @@ const PGDetailPage = ({ match }) => {
   const [pg, setPg] = useState(null);
   const { pgId } = useParams(); // assuming you pass the PG ID via URL
 
+  
+
   useEffect(() => {
     const fetchPgData = async () => {
       try {

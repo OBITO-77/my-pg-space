@@ -7,8 +7,7 @@ import {
   deletePG,
 } from "../controllers/pg.controller.js";
 import authMiddleware from "../utils/authMiddleware.js";
-import multer from "multer";
-import path from "path";
+import upload from "../middlewares/upload.js";
 
 const router = express.Router();
 
@@ -18,17 +17,17 @@ router.get("/", getPGs);
 // Get a single PG by its ID
 router.get("/:id", getPGById);
 
-// Multer configuration to save images to 'uploads/' folder
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Folder where the images will be stored
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Unique filenames
-  },
-});
+// // Multer configuration to save images to 'uploads/' folder
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "uploads/"); // Folder where the images will be stored
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname)); // Unique filenames
+//   },
+// });
 
-export const upload = multer({ storage: storage });
+// export const upload = multer({ storage: storage });
 
 // Create a new PG listing (Private, owner only)
 router.post("/", authMiddleware, upload.array("images", 5), createPG);

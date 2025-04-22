@@ -1,4 +1,4 @@
-import Student from "../models/student.js";
+import Student from "../models/student.model.js";
 import User from "../models/user.model.js";
 
 /**
@@ -108,5 +108,17 @@ export const deleteStudent = async (req, res) => {
     res.status(200).json({ message: "Student profile deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+
+export const getAllStudents = async (req, res) => {
+  try {
+    const students = await Student.find().populate("user", "name email profilePic");
+
+    res.status(200).json(students);
+  } catch (error) {
+    console.error("Error fetching students:", error.message);
+    res.status(500).json({ message: "Failed to fetch students" });
   }
 };

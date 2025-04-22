@@ -14,6 +14,7 @@ import { useAuthStore } from "./stores/useAuthStore";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PaymentSuccess from "./components/PaymentComponents/PaymentSuccess";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/find-roommate" element={<FindRoommatePage />} />
           <Route path="/pg/:pgId" element={<PGDetailsPage />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         </Route>
       </Routes>
       <Toaster />
