@@ -9,11 +9,15 @@ import { useAuthStore } from "../stores/useAuthStore.js";
 const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL;
 
 const FindRoommatePage = () => {
-  const { data: roommates = [], isLoading, error } = useQuery({
+  const {
+    data: roommates = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["students"],
     queryFn: getAllStudents,
   });
-  const authUser = useAuthStore(state=>state.authUser);
+  const authUser = useAuthStore((state) => state.authUser);
 
   const [selectedRoommate, setSelectedRoommate] = useState(null);
   const [showChat, setShowChat] = useState(false);
@@ -39,7 +43,9 @@ const FindRoommatePage = () => {
           roommate.interests.includes(interest)
         );
 
-      return matchesGender && matchesBudget && matchesPercentage && matchesInterests;
+      return (
+        matchesGender && matchesBudget && matchesPercentage && matchesInterests
+      );
     });
   }, [roommates, filters]);
 
@@ -66,7 +72,9 @@ const FindRoommatePage = () => {
   }
 
   if (error) {
-    return <div className="text-red-500 text-center">Failed to load students</div>;
+    return (
+      <div className="text-red-500 text-center">Failed to load students</div>
+    );
   }
 
   return (
@@ -122,7 +130,10 @@ const FindRoommatePage = () => {
               max="100"
               value={filters.minPercentage}
               onChange={(e) =>
-                setFilters({ ...filters, minPercentage: Number(e.target.value) })
+                setFilters({
+                  ...filters,
+                  minPercentage: Number(e.target.value),
+                })
               }
             />
           </div>
@@ -130,18 +141,22 @@ const FindRoommatePage = () => {
           <div className="filter-group">
             <label>Interests:</label>
             <div className="interests-filter">
-              {["movies", "games", "reading", "sports", "other"].map((interest) => (
-                <div
-                  key={interest}
-                  className={`interest-tag ${
-                    filters.selectedInterests.includes(interest) ? "selected" : ""
-                  }`}
-                  onClick={() => handleInterestToggle(interest)}
-                >
-                  {getInterestIcon(interest)}{" "}
-                  {interest.charAt(0).toUpperCase() + interest.slice(1)}
-                </div>
-              ))}
+              {["movies", "games", "reading", "sports", "other"].map(
+                (interest) => (
+                  <div
+                    key={interest}
+                    className={`interest-tag ${
+                      filters.selectedInterests.includes(interest)
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => handleInterestToggle(interest)}
+                  >
+                    {getInterestIcon(interest)}{" "}
+                    {interest.charAt(0).toUpperCase() + interest.slice(1)}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
@@ -174,7 +189,7 @@ const RoommateCard = ({ roommate, onConnect }) => {
         src={`${UPLOADS_URL}/${user.profilePic}`}
         alt="Profile"
       />
-      <h3>{user.fullName}</h3>
+      <h3>{user.name}</h3>
       <div className="stats">
         <div className="stat-item">
           <div className="stat-value">{roommate.age}</div>

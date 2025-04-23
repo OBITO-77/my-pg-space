@@ -23,7 +23,7 @@ export const signup = async (req, res) => {
   } = req.body;
 
   const profilePic = req.files?.profilePic?.[0]?.filename || "";
- // assuming multer handles this
+  // assuming multer handles this
 
   try {
     // 1. Validate required fields
