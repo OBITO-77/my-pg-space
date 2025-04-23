@@ -6,8 +6,8 @@ import {
   updatePG,
   deletePG,
 } from "../controllers/pg.controller.js";
-import authMiddleware from "../utils/authMiddleware.js";
 import upload from "../middlewares/upload.js";
+import { protectRoute } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
@@ -30,12 +30,12 @@ router.get("/:id", getPGById);
 // export const upload = multer({ storage: storage });
 
 // Create a new PG listing (Private, owner only)
-router.post("/", authMiddleware, upload.array("images", 5), createPG);
+router.post("/",protectRoute, upload.array("images", 5), createPG);
 
 // Update an existing PG (Private, owner only)
-router.put("/:id", authMiddleware, updatePG);
+router.put("/:id", updatePG);
 
 // Delete a PG listing (Private, owner only)
-router.delete("/:id", authMiddleware, deletePG);
+router.delete("/:id", deletePG);
 
 export default router;

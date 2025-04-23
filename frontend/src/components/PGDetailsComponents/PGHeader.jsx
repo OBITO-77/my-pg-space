@@ -44,7 +44,7 @@ const PGHeader = ({ pg }) => {
   
   return (
     <div className="pg-header">
-      <ImageSlider images={pg.images.map((url) => `${UPLOADS_URL}${url}`)} />
+      <ImageSlider images={pg.images.map((url) => `${UPLOADS_URL}/${url}`)} />
       <div className="pg-info">
         <h1>{pg.name}</h1>
         <p>{pg.address}</p>

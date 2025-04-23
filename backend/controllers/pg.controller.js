@@ -70,10 +70,10 @@ export const createPG = async (req, res) => {
       city,
       price,
       type,
-      services,
+      services: services?.split(",").map((i) => i.trim()),
       images,
-      amenities,
-      occupancies,
+      amenities: amenities?.split(",").map((i) => i.trim()),
+      occupancies: occupancies?.split(",").map((i) => i.trim()),
       details,
       location: {
         type: "Point",

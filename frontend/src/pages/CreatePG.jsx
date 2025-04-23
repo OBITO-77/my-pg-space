@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { axiosInstance } from "../lib/axiosInstance";
+import { useMutation } from '@tanstack/react-query';
+import { createPg } from "../services/api/pgApi";
+import toast from "react-hot-toast";
 
 const CreatePG = () => {
   const [formData, setFormData] = useState({
@@ -16,33 +20,11 @@ const CreatePG = () => {
     lang: "",
   });
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
-    setImages([...e.target.files]);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
-    }
-    images.forEach((img) => data.append("images", img));
-
-    try {
-      const res = await axios.post("http://localhost:5000/api/pgs", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true, // if you're using cookies for auth
-      });
-
-      alert("PG Created Successfully!");
+  const {mutate,isPending} = useMutation({
+    mutationFn: createPg,
+    onSuccess:()=>{
+      toast.success("PG Created Successfully!");
       setFormData({
         name: "",
         address: "",
@@ -57,12 +39,30 @@ const CreatePG = () => {
         lang: "",
       });
       setImages([]);
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Submission failed. Please try again.");
-    } finally {
-      setLoading(false);
+    },
+    onError:(error)=>{
+      toast.error(error.message)
     }
+  });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    setImages([...e.target.files]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(key, formData[key]);
+    }
+    images.forEach((img) => data.append("images",img));
+
+    mutate(data)
+
   };
 
   return (
@@ -170,10 +170,10 @@ const CreatePG = () => {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={isPending}
           className="w-full mt-6 bg-[#FB8500] hover:bg-[#FFB703] text-white font-bold py-2 px-4 rounded-full transition duration-300"
         >
-          {loading ? "Submitting..." : "Submit PG"}
+          {isPending ? "Submitting..." : "Submit PG"}
         </button>
       </form>
     </div>

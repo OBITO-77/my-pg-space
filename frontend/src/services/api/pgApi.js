@@ -5,4 +5,7 @@ export const getAllPgs = async () => {
   return results.data;
 };
 
-
+export const createPg = async (data)=>{
+  const res = await axiosInstance.post("/pgs",data)
+  return res.data
+}

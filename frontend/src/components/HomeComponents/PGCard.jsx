@@ -16,7 +16,7 @@ const PGCard = ({ pg, onHover, onLeave, onClick }) => {
       }}
     >
       <img
-        src={`${UPLOADS_URL}${pg.images[0]}`}
+        src={`${UPLOADS_URL}/${pg.images[0]}`}
         alt={pg.name}
         className="pg-image"
       />
