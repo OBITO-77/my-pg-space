@@ -83,15 +83,14 @@ p a {
   --input-border: #ccc;
 }
 
-/* Container for the login form */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: var(--light-background); /* Light background color */
-  padding: 20px; /* Padding for mobile devices */
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Abstract image */
+  background-color: var(--light-background); 
+  padding: 20px; 
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
 
 /* Styling for the login form */

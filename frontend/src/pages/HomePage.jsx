@@ -49,7 +49,7 @@ const HomePage = () => {
       <Banner />
       <section id="pgs" className="px-4 md:px-12">
         <SearchBar />
-        <FilterSection onFilter={handleFilter} />
+        {/* <FilterSection onFilter={handleFilter} /> */}
         {isLoading ? (
           <div className="flex justify-center py-6">
             <Loader2 className="h-8 w-8 animate-spin" />

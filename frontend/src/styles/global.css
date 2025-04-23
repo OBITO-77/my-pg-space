@@ -1,18 +1,12 @@
-/* src/styles/global.css */
-/* Add Slick styles */
-
-/* global.css or index.css */
-
 :root {
-  --light-blue: #8ecae6; /* Light Blue */
-  --medium-blue: #219ebc; /* Medium Blue */
-  --dark-blue: #023047; /* Dark Blue */
-  --yellow: #ffb703; /* Yellow */
+  --light-blue: #8ecae6; 
+  --medium-blue: #219ebc; 
+  --dark-blue: #023047; 
+  --yellow: #ffb703;
   --orange: #fb8500;
-  --light-orange: #ede0c0; /* Orange */
+  --light-orange: #ede0c0; 
 }
 
-/* Optionally, you can add some global styles here as well */
 
 body {
   margin: 0;
@@ -42,4 +36,4 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-}
+} 

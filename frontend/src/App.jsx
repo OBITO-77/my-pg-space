@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PaymentSuccess from "./components/PaymentComponents/PaymentSuccess";
 import CreatePG from "./pages/CreatePG";
+import StudentProfile from "./pages/StudentProfile";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
@@ -43,6 +44,7 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/student-profile" element={<StudentProfile />} />
           <Route path="/find-roommate" element={<FindRoommatePage />} />
           <Route path="/pg/:pgId" element={<PGDetailsPage />} />
           <Route path="/chat" element={<ChatPage />} />
