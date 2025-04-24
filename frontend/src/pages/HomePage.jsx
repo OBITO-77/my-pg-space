@@ -8,20 +8,35 @@ import { Loader2 } from "lucide-react";
 import Chatbot from "../components/ChatBot/Chatbot";
 import { useQuery } from "@tanstack/react-query";
 import { getAllPgs } from "../services/api/pgApi";
+import { useEffect } from "react";
+import ChatbotAI from "../components/chatbaseAI";
+import "../styles/HomeStyles/HomePage.css";
 
 const HomePage = () => {
   // const [pgList, setPgList] = useState([]);
 
-  const {data:pgList ,isLoading} = useQuery({
-    queryKey:["pgs"],
-    queryFn:getAllPgs
-  })
+  const { data: pgList, isLoading } = useQuery({
+    queryKey: ["pgs"],
+    queryFn: getAllPgs,
+  });
 
   const handleFilter = async (filters) => {
+    // useEffect(() => {
+    //   const script = document.createElement("script");
+    //   script.src = "https://www.chatbase.co/embed.min.js";
+    //   script.id = "cxCIe3YaS7nvIPyET_8-W";
+    //   script.defer = true;
+    //   window.chatbaseConfig = {
+    //     chatbotId: "cxCIe3YaS7nvIPyET_8-W",
+    //   };
+    //   document.body.appendChild(script);
+    //   return () => {
+    //     document.body.removeChild(script);
+    //   };
+    // }, []);
     // setLoading(true);
     // try {
     //   const query = new URLSearchParams();
-
     //   if (filters.city) query.append("city", filters.city);
     //   if (filters.type) query.append("type", filters.type);
     //   if (filters.maxPrice) query.append("price", filters.maxPrice);
@@ -29,7 +44,6 @@ const HomePage = () => {
     //     query.append("amenities", filters.amenities.join(","));
     //   }
     //   console.log(query);
-
     //   const res = await axios.get(`/api/pgs?${query.toString()}`);
     //   setPgList(res.data);
     // } catch (err) {
@@ -58,8 +72,8 @@ const HomePage = () => {
           <PGList pgData={pgList} />
         )}
       </section>
+      {/* <ChatbotAI /> */}
       <Footer />
-      <Chatbot />
     </>
   );
 };
