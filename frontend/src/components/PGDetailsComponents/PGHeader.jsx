@@ -2,6 +2,8 @@ import React from "react";
 import "../../styles/PGDetailsStyles/PGHeader.css";
 import ImageSlider from "./ImageSlider";
 import axios from "axios";
+import ScheduleVisitModal from "../HomeComponents/ScheduleVisitModal";
+import RequestCallbackModal from "./RequestCallbackModal";
 const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL;
 
 
@@ -45,13 +47,14 @@ const PGHeader = ({ pg }) => {
   return (
     <div className="pg-header">
       <ImageSlider images={pg.images.map((url) => `${UPLOADS_URL}/${url}`)} />
+      
       <div className="pg-info">
         <h1>{pg.name}</h1>
         <p>{pg.address}</p>
         <p>Starts from ₹{pg.price}/mo</p>
         <div className="pg-actions">
-          <button className="schedule-visit-btn">Schedule a Visit</button>
-          <button className="request-callback-btn">Request a Callback</button>
+          <ScheduleVisitModal />
+          <RequestCallbackModal />
           <button className="request-payment-btn" onClick={()=>checkoutHandler(1000)}>Do payment(₹1000)</button>
         
         </div>

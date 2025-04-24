@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import "../styles/FindRoommateStyles/style.css";
+import "../styles/FindRoommateStyles/fmrstyle.css";
 import ChatModal from "../components/FindRoommateComponents/ChatModal.jsx";
 import { useQuery } from "@tanstack/react-query";
 import { getAllStudents } from "../services/api/studentApi.js";

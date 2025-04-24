@@ -1,6 +1,6 @@
 // ChatModal.js
 import { useState, useEffect, useRef } from 'react';
-import '../../styles/FindRoommateStyles/style.css'
+import '../../styles/FindRoommateStyles/fmrstyle.css'
 
 const ChatModal = ({ contact, onClose, onSendMessage }) => {
   const [message, setMessage] = useState('');

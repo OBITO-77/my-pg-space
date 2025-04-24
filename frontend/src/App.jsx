@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import "./styles/global.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomePage from "./pages/HomePage";
@@ -17,6 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PaymentSuccess from "./components/PaymentComponents/PaymentSuccess";
 import CreatePG from "./pages/CreatePG";
 import StudentProfile from "./pages/StudentProfile";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
@@ -48,6 +48,7 @@ function App() {
           <Route path="/find-roommate" element={<FindRoommatePage />} />
           <Route path="/pg/:pgId" element={<PGDetailsPage />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/paymentsuccess" element={<PaymentSuccess />} />
           <Route path="/create-pg" element={<CreatePG />} />
           <Route path="/edit-pg/:id" element={<CreatePG isEdit={true} />} />
