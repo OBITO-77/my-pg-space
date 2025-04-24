@@ -1,84 +1,13 @@
-/* Import Google Font */
+/* 
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
-/* src/components/Login.css */
-/* .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f2f2f2;
-}
 
-.login-form {
-  background-color: #fff;
-  padding: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.login-form h2 {
-  margin-bottom: 1.5rem;
-  font-size: 24px;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #007bff;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.error-message {
-  color: red;
-  margin-bottom: 1rem;
-}
-
-p {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-p a {
-  color: #007bff;
-  text-decoration: none;
-} */
-
-/* Root variables for color scheme */
 :root {
   --light-blue: #8ecae6;
   --medium-blue: #219ebc;
   --dark-blue: #023047;
   --yellow: #ffb703;
   --orange: #fb8500;
-  --error-color: #ff4d4d; /* Error Red */
+  --error-color: #ff4d4d; 
   --light-background: #f2f2f2;
   --input-border: #ccc;
 }
@@ -93,33 +22,29 @@ p a {
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
 
-/* Styling for the login form */
 .login-form {
   background-color: wheat;
   padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  font-family: "Raleway", sans-serif; /* Custom font */
-  transition: transform 0.3s ease; /* Smooth scaling */
+  font-family: "Raleway", sans-serif; 
+  transition: transform 0.3s ease; 
 }
 
-/* Hover effect on the form */
 .login-form:hover {
-  transform: scale(1.02); /* Slight zoom on hover */
+  transform: scale(1.02); 
 }
 
-/* Form header */
 .login-form h2 {
   margin-bottom: 1.5rem;
   font-size: 24px;
-  color: var(--dark-blue); /* Dark blue heading */
+  color: var(--dark-blue);
   text-align: center;
   font-weight: bold;
 }
 
-/* Form group styling */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -128,32 +53,30 @@ p a {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: var(--dark-blue); /* Dark blue for labels */
+  color: var(--dark-blue);
 }
 
-/* Input fields styling */
 .form-group input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--input-border);
   border-radius: 6px;
   font-size: 16px;
-  color: var(--dark-blue); /* Dark blue text */
+  color: var(--dark-blue); 
   transition: border-color 0.3s ease;
 }
 
-/* Focus effect on input fields */
+
 .form-group input:focus {
-  border-color: var(--medium-blue); /* Blue border on focus */
+  border-color: var(--medium-blue); 
   outline: none;
-  box-shadow: 0 0 8px rgba(33, 158, 188, 0.3); /* Blue shadow on focus */
+  box-shadow: 0 0 8px rgba(33, 158, 188, 0.3); 
 }
 
-/* Button styling */
 button {
   width: 100%;
   padding: 0.75rem;
-  background-color: var(--medium-blue); /* Medium blue background */
+  background-color: var(--medium-blue); 
   border: none;
   color: #fff;
   font-size: 16px;
@@ -163,41 +86,35 @@ button {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect on button */
 button:hover {
-  background-color: var(--dark-blue); /* Dark blue on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+  background-color: var(--dark-blue); 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
 }
 
-/* Error message styling */
 .error-message {
-  color: var(--error-color); /* Error color */
+  color: var(--error-color); 
   margin-bottom: 1rem;
   text-align: center;
   font-weight: bold;
 }
 
-/* Text at the bottom */
 p {
   margin-top: 1rem;
   text-align: center;
-  color: var(--dark-blue); /* Dark blue text */
+  color: var(--dark-blue); 
   font-size: 14px;
 }
 
-/* Link inside the paragraph */
 p a {
-  color: var(--orange); /* Orange color for link */
+  color: var(--orange);
   text-decoration: none;
   font-weight: bold;
 }
 
-/* Hover effect on the link */
 p a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .login-container {
     padding: 10px;
@@ -210,4 +127,4 @@ p a:hover {
   button {
     font-size: 14px;
   }
-}
+} */
